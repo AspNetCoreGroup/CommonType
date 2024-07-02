@@ -5,6 +5,7 @@
         public string LogicalName { set; get; } = string.Empty;
         public double Value { set; get; }
         public uint Unit { set; get; }
+        public DateTime DateTime { set; get; }
     }
 
     public class DeviceEvent
@@ -18,6 +19,17 @@
     {
         public string Name { set; get; } = string.Empty;
         public string Value { set; get; } = string.Empty;
+    }
+
+    public class PropetryCollection
+    {
+        IEnumerable<Property> Properties { get; }
+    }
+
+    public class Property
+    {
+        string Name { get; }
+        string Value { get; }
     }
 
     public enum EventParameterType
