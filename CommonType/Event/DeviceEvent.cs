@@ -41,11 +41,11 @@ namespace CommonTypeDevice.Event
 
     public class DeviceEvent
     {
-        public List<EventParameter> EventParameters = [];       
+        public List<EventItem> EventParameters = [];       
         public DateTime DateTime { set; get; }
     }
 
-    public class EventParameter
+    public class EventItem
     {
         public int Key { set; get; }
         public string Name { set; get; } = string.Empty;
