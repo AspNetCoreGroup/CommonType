@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="CommonTypeDevice.DeviceData">
+    <Position X="0.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAAAABAAA=</HashCode>
+      <FileName>CommonTypeDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommonTypeDevice.Event.EventDictionary">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Event\DeviceEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommonTypeDevice.Event.DeviceEvent">
+    <Position X="4.5" Y="2" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Event\DeviceEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommonTypeDevice.Event.EventItem">
+    <Position X="8.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Event\DeviceEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommonTypeDevice.Measurument.Measurement">
+    <Position X="4.5" Y="3.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAIAAAAAQAAAAgAAAAAAA=</HashCode>
+      <FileName>Measurement\Measurement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommonTypeDevice.Measurument.UnitType">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Measurement\Measurement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommonTypeDevice.Property.PropetryCollection">
+    <Position X="4.5" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Property\Property.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommonTypeDevice.Property.Property">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Property\Property.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommonTypeDevice.Property.DeviceType">
+    <Position X="2" Y="5.5" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Property\Property.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CommonTypeDevice.Property.PropertyType">
+    <Position X="2.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAIAACAAAAAAAAAAA=</HashCode>
+      <FileName>Property\Property.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
