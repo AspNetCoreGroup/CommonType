@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CommonTypeDevice.Event
+﻿namespace CommonTypeDevice.Event
 {
     public class EventDictionary
     {
@@ -41,7 +35,7 @@ namespace CommonTypeDevice.Event
 
     public class DeviceEvent
     {
-        public List<EventItem> EventParameters = [];       
+        public List<EventItem> EventParameters { set; get; } = new();
         public DateTime DateTime { set; get; }
     }
 
