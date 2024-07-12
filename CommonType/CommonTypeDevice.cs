@@ -10,9 +10,4 @@ namespace CommonTypeDevice
         public List<DeviceEvent>? DeviceEvents { set; get; }
         public List<Measurement>? Registers { set; get; }
     }
-
-   
-    
-
-   
 }

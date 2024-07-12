@@ -6,21 +6,44 @@ using System.Threading.Tasks;
 
 namespace CommonTypeDevice.Property
 {
-    public class PropetryCollection
+    public class PropetryCollection: IPropetryCollection
     {
-        IEnumerable<Property>? Properties { get; set; }
+        public PropetryCollection()
+        {
+        }
+
+        public PropetryCollection(IEnumerable<IProperty> properties)
+        {
+            Properties = properties;
+        }
+        public IEnumerable<IProperty>? Properties { get; }
     }
 
-    public class Property
+    public class Property : IProperty
     {
-        /// <summary>
-        /// EventParameterType
-        /// </summary>
+        public Property()
+        {
+        }
+
+        public Property(string name, string value)
+        {
+            Name = name;
+            Value = value;
+        }
+
         public string Name { get; } = string.Empty;
-        /// <summary>
-        /// 
-        /// </summary>
+
         public string Value { get; } = string.Empty;
+
+    }
+    public interface IPropetryCollection
+    {
+        IEnumerable<IProperty>? Properties { get; }
+    }
+    public interface IProperty
+    {
+        string Name { get; }
+        string Value { get; }
     }
 
     public enum PropertyType
