@@ -6,7 +6,7 @@ namespace CommonTypeDevice
 {
     public class DeviceData
     {
-        public PropetryCollection PropetryCollection { set; get; } = new PropetryCollection();
+        public List<DeviceProperty>? Properties { get; set; } 
         public List<DeviceEvent>? DeviceEvents { set; get; }
         public List<Measurement>? Registers { set; get; }
     }

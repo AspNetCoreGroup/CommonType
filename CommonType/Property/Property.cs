@@ -16,24 +16,24 @@ namespace CommonTypeDevice.Property
         {
             Properties = properties;
         }
-        public IEnumerable<IProperty>? Properties { get; }
+        public IEnumerable<IProperty>? Properties { get; set; } = new List<IProperty>();
     }
 
-    public class Property : IProperty
+    public class DeviceProperty : IProperty
     {
-        public Property()
+        public DeviceProperty()
         {
         }
 
-        public Property(string name, string value)
+        public DeviceProperty(string name, string value)
         {
             Name = name;
             Value = value;
         }
 
-        public string Name { get; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
 
-        public string Value { get; } = string.Empty;
+        public string Value { get; set; } = string.Empty;
 
     }
     public interface IPropetryCollection
