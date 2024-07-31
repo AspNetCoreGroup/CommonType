@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonTypeDevice.Property
+namespace ModelLibrary.Model.Devices.Property
 {
     public class PropetryCollection: IPropetryCollection
     {

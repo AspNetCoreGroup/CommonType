@@ -1,8 +1,8 @@
-﻿using CommonTypeDevice.Event;
-using CommonTypeDevice.Measurument;
-using CommonTypeDevice.Property;
+﻿using ModelLibrary.Model.Devices.Event;
+using ModelLibrary.Model.Devices.Measurument;
+using ModelLibrary.Model.Devices.Property;
 
-namespace CommonTypeDevice
+namespace ModelLibrary.Model.Devices
 {
     public class DeviceData
     {
