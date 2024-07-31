@@ -1,48 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
-  <Class Name="CommonTypeDevice.DeviceData">
+  <Class Name="ModelLibrary.Model.Devices.DeviceData">
     <Position X="0.5" Y="0.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAAAABAAA=</HashCode>
-      <FileName>CommonTypeDevice.cs</FileName>
+      <FileName>ModelLibrary.Model.Devices.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CommonTypeDevice.Event.EventDictionary">
+  <Class Name="ModelLibrary.Model.Devices.Event.EventDictionary">
     <Position X="0.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Event\DeviceEvent.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CommonTypeDevice.Event.DeviceEvent">
+  <Class Name="ModelLibrary.Model.Devices.Event.DeviceEvent">
     <Position X="4.5" Y="2" Width="4" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>Event\DeviceEvent.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CommonTypeDevice.Event.EventItem">
+  <Class Name="ModelLibrary.Model.Devices.Event.EventItem">
     <Position X="8.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Event\DeviceEvent.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CommonTypeDevice.Measurument.Measurement">
+  <Class Name="ModelLibrary.Model.Devices.Measurument.Measurement">
     <Position X="4.5" Y="3.5" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAIAAAAAQAAAAgAAAAAAA=</HashCode>
       <FileName>Measurement\Measurement.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CommonTypeDevice.Measurument.UnitType">
+  <Class Name="ModelLibrary.Model.Devices.Measurument.UnitType">
     <Position X="0.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Measurement\Measurement.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CommonTypeDevice.Property.PropetryCollection">
+  <Class Name="ModelLibrary.Model.Devices.Property.PropetryCollection">
     <Position X="4.5" Y="0.5" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
@@ -50,7 +50,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CommonTypeDevice.Property.Property">
+  <Class Name="ModelLibrary.Model.Devices.Property.Property">
     <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
@@ -58,7 +58,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CommonTypeDevice.Property.DeviceType">
+  <Class Name="ModelLibrary.Model.Devices.Property.DeviceType">
     <Position X="2" Y="5.5" Width="3.25" />
     <Compartments>
       <Compartment Name="Private" Collapsed="true" />
@@ -68,7 +68,7 @@
       <FileName>Property\Property.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="CommonTypeDevice.Property.PropertyType">
+  <Enum Name="ModelLibrary.Model.Devices.Property.PropertyType">
     <Position X="2.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAIAACAAAAAAAAAAA=</HashCode>

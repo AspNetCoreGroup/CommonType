@@ -1,4 +1,4 @@
-﻿namespace CommonTypeDevice.Event
+﻿namespace ModelLibrary.Model.Devices.Event
 {
     public class EventDictionary
     {

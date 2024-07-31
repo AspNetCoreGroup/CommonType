@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTypeDevice", "CommonType\CommonTypeDevice.csproj", "{686DCE31-B376-43C8-A127-9AE9919DA36C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelLibrary", "ModelLibrary\ModelLibrary.csproj", "{4DC43183-766F-4E2C-8493-6846707BDB85}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{5786E9E9-E71C-4B2F-AAB1-73569368A03B}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{686DCE31-B376-43C8-A127-9AE9919DA36C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{686DCE31-B376-43C8-A127-9AE9919DA36C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{686DCE31-B376-43C8-A127-9AE9919DA36C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{686DCE31-B376-43C8-A127-9AE9919DA36C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DC43183-766F-4E2C-8493-6846707BDB85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DC43183-766F-4E2C-8493-6846707BDB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DC43183-766F-4E2C-8493-6846707BDB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
