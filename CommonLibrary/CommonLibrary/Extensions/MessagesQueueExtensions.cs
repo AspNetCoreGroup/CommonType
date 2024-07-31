@@ -10,9 +10,12 @@ namespace CommonLibrary.Extensions
 
         public static Task SendMessageAsync<T>(this IMessageSender sender, string endpoint, T message)
         {
+            var type = typeof(T);
+            var contentType = nameof(T) + (!type.IsGenericType ? "" : "<" + string.Join(", ", type.GenericTypeArguments.Select(x => x.Name) + ">"));
+
             var param = new Dictionary<string, string>()
             {
-                { "content_type", typeof(T).Name }
+                { "ContentType", contentType }
             };
 
             var messageText = JsonSerializer.Serialize(message);
