@@ -6,6 +6,8 @@ namespace CommonLibrary.Extensions
 {
     public static class MessagesQueueExtensions
     {
+        public delegate void OnMessageRecievedHandler(string queueName, string message, Dictionary<string, string> param);
+
         public static Task SendMessageAsync<T>(this IMessageSender sender, string endpoint, T message)
         {
             var param = new Dictionary<string, string>()
@@ -13,12 +15,12 @@ namespace CommonLibrary.Extensions
                 { "content_type", typeof(T).Name }
             };
 
-            var messageText =   JsonSerializer.Serialize(message);
+            var messageText = JsonSerializer.Serialize(message);
 
             return sender.SendMessageAsync(endpoint, messageText, param);
         }
 
-        public static void AddHandler(this IMessageListener listener, Action<string, string> onMessage)
+        public static void AddHandler(this IMessageListener listener, OnMessageRecievedHandler onMessage)
         {
             listener.AddHandler(new StringMessageHandler()
             {
@@ -26,33 +28,13 @@ namespace CommonLibrary.Extensions
             });
         }
 
-        public static void AddHandler<T>(this IMessageListener listener, Action<string, T> onMessage)
-        {
-            listener.AddHandler(new SerializeMessageHandler<T>()
-            {
-                OnMessage = onMessage
-            });
-        }
-
         private class StringMessageHandler : IMessageHandler
         {
-            public required Action<string, string> OnMessage { get; set; }
+            public required OnMessageRecievedHandler OnMessage { get; set; }
 
-            public void OnMessageRecieved(string queueName, string message)
+            public void OnMessageRecieved(string queueName, string message, Dictionary<string, string> param)
             {
-                OnMessage.Invoke(queueName, message);
-            }
-        }
-
-        private class SerializeMessageHandler<T> : IMessageHandler
-        {
-            public required Action<string, T> OnMessage { get; set; }
-
-            public void OnMessageRecieved(string queueName, string message)
-            {
-                //var content = 
-
-                //OnMessage.Invoke(queueName, def);
+                OnMessage.Invoke(queueName, message, param);
             }
         }
     }
