@@ -8,6 +8,10 @@
 
         public int UserID { get; set; }
 
+        public bool IsAdmin { get; set; }
+
+        public bool IsEditor { get; set; }
+
 
         public NetworkDto? Network { get; set; }
 
