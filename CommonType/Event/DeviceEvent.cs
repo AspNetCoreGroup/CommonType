@@ -33,9 +33,15 @@
         };
     }
 
-    public class DeviceEvent
+    public class DeviceEvent: IDeviceEvent
     {
         public List<EventItem> EventParameters { set; get; } = new();
+        public DateTime DateTime { set; get; }
+    }
+
+    public interface IDeviceEvent 
+    {
+        public List<EventItem> EventParameters { set; get; } 
         public DateTime DateTime { set; get; }
     }
 
