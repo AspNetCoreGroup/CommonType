@@ -49,7 +49,7 @@ namespace RabbitLibrary.Senders
 
             var body = Encoding.UTF8.GetBytes(message);
 
-            var properties = DictionaryToProperties(channel, param ?? []);
+            var properties = DictionaryToProperties(channel, param ?? new Dictionary<string, string>());
 
             channel.BasicPublish(exchange: exchange ?? "", routingKey: null, basicProperties: null, body: body);
 
