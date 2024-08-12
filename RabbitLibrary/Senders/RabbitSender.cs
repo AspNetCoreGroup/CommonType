@@ -20,7 +20,7 @@ namespace RabbitLibrary.Senders
 
         public Task SendMessageAsync(string endpoint, string message, Dictionary<string, string>? param = null)
         {
-            var endpointConf = Configuration.GetSection($"Senders/RabbitMQ/Endpoints/{endpoint}");
+            var endpointConf = Configuration.GetSection($"Senders:RabbitMQ:Endpoints:{endpoint}");
 
             var hostName = endpointConf["HostName"] ?? throw new NullReferenceException($"Для {endpoint} не указан HostName");
             var virtualHost = endpointConf["VirtualHost"] ?? throw new NullReferenceException($"Для {endpoint} не указан VirtualHost");
@@ -51,7 +51,7 @@ namespace RabbitLibrary.Senders
 
             var properties = DictionaryToProperties(channel, param ?? new Dictionary<string, string>());
 
-            channel.BasicPublish(exchange: exchange ?? "", routingKey: null, basicProperties: null, body: body);
+            channel.BasicPublish(exchange: exchange ?? "", routingKey: "", basicProperties: properties, body: body);
 
             return Task.CompletedTask;
         }

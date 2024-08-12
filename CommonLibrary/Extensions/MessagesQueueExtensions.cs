@@ -11,7 +11,7 @@ namespace CommonLibrary.Extensions
         public static Task SendMessageAsync<T>(this IMessageSender sender, string endpoint, T message)
         {
             var type = typeof(T);
-            var contentType = nameof(T) + (!type.IsGenericType ? "" : "<" + string.Join(", ", type.GenericTypeArguments.Select(x => x.Name) + ">"));
+            var contentType = GetTypeShortName(type);
 
             var param = new Dictionary<string, string>()
             {
@@ -38,6 +38,21 @@ namespace CommonLibrary.Extensions
             public void OnMessageRecieved(string queueName, string message, Dictionary<string, string> param)
             {
                 OnMessage.Invoke(queueName, message, param);
+            }
+        }
+
+        private static string GetTypeShortName(Type type)
+        {
+            if (type.IsGenericType)
+            {
+                var typeName = type.Name.Split("`")[0];
+                var genericTypes = type.GenericTypeArguments.Select(GetTypeShortName);
+
+                return typeName + "<" + string.Join(", ", genericTypes) + ">";
+            }
+            else
+            {
+                return type.Name;
             }
         }
     }

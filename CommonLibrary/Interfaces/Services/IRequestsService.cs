@@ -1,9 +1,11 @@
-﻿using System;
+﻿using ModelLibrary.Enums;
+
 namespace CommonLibrary.Interfaces.Services
 {
     public interface IRequestsService
     {
-        Task SendRequestAsync<T>(string path, T argument);
-        Task<V> SendRequestAsync<V, T>(string path, T argument);
+        Task RequestAsync<T>(RequestType requestType, string path, T? request, CancellationToken cancellationToken);
+
+        Task<V> RequestAsync<V, T>(RequestType requestType, string path, T? request, CancellationToken cancellationToken);
     }
 }
