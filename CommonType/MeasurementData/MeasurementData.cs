@@ -7,7 +7,7 @@
         /// </summary>
         public int MeasurumentId { set; get; }
 
-        public double Value { set; get; }
+        public double? Value { set; get; }
         /// <summary>
         /// ват вар  UnitType
         /// </summary>
