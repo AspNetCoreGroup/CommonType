@@ -1,6 +1,6 @@
-﻿namespace CommonTypeDevice.Measurument
+﻿namespace CommonTypeDevice.MeasurumentData
 {
-    public class Measurement
+    public class MeasurementData
     {
         /// <summary>
         /// A+ A- .. 
@@ -14,6 +14,7 @@
         public uint Unit { set; get; }
         public DateTime DateTime { set; get; }
     }
+       
     public class MeasurementDictionary
     {
 

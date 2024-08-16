@@ -1,5 +1,5 @@
 ﻿using CommonTypeDevice.Event;
-using CommonTypeDevice.Measurument;
+using CommonTypeDevice.MeasurumentData;
 using CommonTypeDevice.Property;
 
 namespace CommonTypeDevice
@@ -8,6 +8,6 @@ namespace CommonTypeDevice
     {
         public List<DeviceProperty>? Properties { get; set; } 
         public List<DeviceEvent>? DeviceEvents { set; get; }
-        public List<Measurement>? Measurements { set; get; }
+        public List<MeasurementData>? Measurements { set; get; }
     }
 }
