@@ -1,5 +1,6 @@
 ﻿using CommonLibrary.Interfaces.Listeners;
 using Microsoft.Extensions.Configuration;
+using ModelLibrary.Events;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -64,9 +65,38 @@ namespace RabbitLibrary.Listeners
                 var content = Encoding.UTF8.GetString(ea.Body.ToArray());
                 var param = PropertiesToDictionary(ea.BasicProperties);
 
+                var args = new MessageRecievedEventArgs()
+                {
+                    QueueName = queue,
+                    Message = content,
+                    Param = param,
+                    Failed = false,
+                    Hadled = false,
+                    Rejected = false,
+                    Resended = false,
+                };
+
                 foreach (var handler in Handlers)
                 {
-                    handler.OnMessageRecieved(queue, content, param);
+                    if (args.Resended)
+                    {
+                        Channel.BasicReject(ea.DeliveryTag, true);
+                        return;
+                    }
+
+                    if (args.Rejected)
+                    {
+                        Channel.BasicReject(ea.DeliveryTag, false);
+                        return;
+                    }
+
+                    if (args.Hadled)
+                    {
+                        Channel.BasicAck(ea.DeliveryTag, false);
+                        return;
+                    }
+
+                    handler.OnMessageRecieved(args);
                 }
 
                 Channel.BasicAck(ea.DeliveryTag, false);
