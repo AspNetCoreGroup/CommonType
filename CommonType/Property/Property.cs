@@ -68,4 +68,6 @@ namespace CommonTypeDevice.Property
         { 7, "Милур 107" }
         };
     }
+
+    
 }
