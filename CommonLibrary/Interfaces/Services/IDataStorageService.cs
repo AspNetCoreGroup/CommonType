@@ -7,6 +7,7 @@ namespace CommonLibrary.Interfaces.Services
 	{
         Task<GetMeasurementsResponse> GetMeasurementsAsync(GetMeasurementsRequest request);
 
+        [Obsolete]
         Task<GetEventsResponse> GetEventsAsync(GetEventsRequest request);
     }
 }

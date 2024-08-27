@@ -1,9 +1,9 @@
-﻿using ModelLibrary.Model.Devices.Measurument;
+﻿using ModelLibrary.Model.Devices;
 
 namespace ModelLibrary.Responses
 {
 	public class GetMeasurementsResponse
 	{
-		public required List<Measurement> Measurements { get; set; }
+		public required List<MeasurementData> Measurements { get; set; }
 	}
 }

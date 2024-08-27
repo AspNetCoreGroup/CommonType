@@ -30,10 +30,10 @@ namespace DefaultRealisationLibrary.Services
             var response = new GetMeasurementsResponse()
             {
                 Measurements = Enumerable.Range(0, 100 + random.Next() % 100).Select(x =>
-                    new ModelLibrary.Model.Devices.Measurument.Measurement()
+                    new ModelLibrary.Model.Devices.MeasurementData()
                     {
+                        MeasurumentId = x,
                         DateTime = DateTime.Now,
-                        LogicalName = "A+",
                         Unit = 1,
                         Value = random.Next() % 1000000
                     }

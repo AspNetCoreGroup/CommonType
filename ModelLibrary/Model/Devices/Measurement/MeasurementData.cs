@@ -1,20 +1,34 @@
-﻿namespace ModelLibrary.Model.Devices.Measurument
+﻿namespace ModelLibrary.Model.Devices
 {
-    public class Measurement
+    public class MeasurementData
     {
         /// <summary>
         /// A+ A- .. 
         /// </summary>
-        public string LogicalName { set; get; } = string.Empty;
+        public int MeasurumentId { set; get; }
 
-        public double Value { set; get; }
+        public double? Value { set; get; }
         /// <summary>
         /// ват вар  UnitType
         /// </summary>
         public uint Unit { set; get; }
         public DateTime DateTime { set; get; }
     }
+       
+    public class MeasurementDictionary
+    {
 
+        static MeasurementDictionary() { }
+
+        public static readonly Dictionary<int, string> dictionary = new()
+        {
+        { 1, "A+" },
+        { 2, "A-" },
+        { 3, "R+" },
+        { 4, "R-" }
+
+        };
+    }
     public class UnitType
     {
         static UnitType() { }
