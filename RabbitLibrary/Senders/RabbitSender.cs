@@ -45,7 +45,10 @@ namespace RabbitLibrary.Senders
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
-            channel.QueueDeclare(queue: queue ?? "", durable: false, exclusive: false, autoDelete: false, arguments: null);
+            if (!string.IsNullOrWhiteSpace(queue))
+            {
+                channel.QueueDeclare(queue: queue, durable: false, exclusive: false, autoDelete: false, arguments: null);
+            }
 
             var body = Encoding.UTF8.GetBytes(message);
 

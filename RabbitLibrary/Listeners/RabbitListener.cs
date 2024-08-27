@@ -1,5 +1,6 @@
 ﻿using CommonLibrary.Interfaces.Listeners;
 using Microsoft.Extensions.Configuration;
+using ModelLibrary.Events;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -37,7 +38,7 @@ namespace RabbitLibrary.Listeners
 
         public void Open()
         {
-            var endpointConf = Configuration.GetSection($"Senders/RabbitMQ/Endpoints/{Queue}");
+            var endpointConf = Configuration.GetSection($"Listeners:RabbitMQ:Endpoints:{Queue}");
 
             var hostName = endpointConf["HostName"] ?? throw new NullReferenceException($"Для {Queue} не указан HostName");
             var virtualHost = endpointConf["VirtualHost"] ?? throw new NullReferenceException($"Для {Queue} не указан VirtualHost");
@@ -56,7 +57,7 @@ namespace RabbitLibrary.Listeners
             Connection = factory.CreateConnection();
             Channel = Connection.CreateModel();
 
-            Channel.QueueDeclare(queue: queue, durable: false, exclusive: false, autoDelete: false, arguments: null);
+            Channel.QueueDeclare(queue: queue, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
             var consumer = new EventingBasicConsumer(Channel);
             consumer.Received += (ch, ea) =>
@@ -64,9 +65,38 @@ namespace RabbitLibrary.Listeners
                 var content = Encoding.UTF8.GetString(ea.Body.ToArray());
                 var param = PropertiesToDictionary(ea.BasicProperties);
 
+                var args = new MessageRecievedEventArgs()
+                {
+                    QueueName = queue,
+                    Message = content,
+                    Param = param,
+                    Failed = false,
+                    Hadled = false,
+                    Rejected = false,
+                    Resended = false,
+                };
+
                 foreach (var handler in Handlers)
                 {
-                    handler.OnMessageRecieved(queue, content, param);
+                    if (args.Resended)
+                    {
+                        Channel.BasicReject(ea.DeliveryTag, true);
+                        return;
+                    }
+
+                    if (args.Rejected)
+                    {
+                        Channel.BasicReject(ea.DeliveryTag, false);
+                        return;
+                    }
+
+                    if (args.Hadled)
+                    {
+                        Channel.BasicAck(ea.DeliveryTag, false);
+                        return;
+                    }
+
+                    handler.OnMessageRecieved(args);
                 }
 
                 Channel.BasicAck(ea.DeliveryTag, false);
