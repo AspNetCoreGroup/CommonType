@@ -38,7 +38,7 @@ namespace RabbitLibrary.Listeners
 
         public void Open()
         {
-            var endpointConf = Configuration.GetSection($"Senders/RabbitMQ/Endpoints/{Queue}");
+            var endpointConf = Configuration.GetSection($"Listeners:RabbitMQ:Endpoints:{Queue}");
 
             var hostName = endpointConf["HostName"] ?? throw new NullReferenceException($"Для {Queue} не указан HostName");
             var virtualHost = endpointConf["VirtualHost"] ?? throw new NullReferenceException($"Для {Queue} не указан VirtualHost");
@@ -57,7 +57,7 @@ namespace RabbitLibrary.Listeners
             Connection = factory.CreateConnection();
             Channel = Connection.CreateModel();
 
-            Channel.QueueDeclare(queue: queue, durable: false, exclusive: false, autoDelete: false, arguments: null);
+            Channel.QueueDeclare(queue: queue, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
             var consumer = new EventingBasicConsumer(Channel);
             consumer.Received += (ch, ea) =>
