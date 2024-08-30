@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 using CommonLibrary.Interfaces.Factories;
 using CommonLibrary.Interfaces.Services;
 using ModelLibrary.Enums;
@@ -55,7 +56,7 @@ namespace DefaultRealisationLibrary.Services
 
             var str = JsonSerializer.Serialize(request);
 
-            var httpContent = new StringContent(str);
+            var httpContent = new StringContent(str, Encoding.UTF8, "application/json");
 
             return httpContent;
         }
@@ -82,8 +83,8 @@ namespace DefaultRealisationLibrary.Services
 
             if (content != null)
             {
-                request.Headers.Add("Content-Type", "application/json");
                 request.Content = content;
+                request.Headers.Add("Content-Type", "application/json");
             }
 
             return Client.SendAsync(request, cancellationToken);
