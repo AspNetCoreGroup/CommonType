@@ -1,5 +1,5 @@
-﻿using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
+using System.Net.Http.Json;
 using CommonLibrary.Interfaces.Factories;
 using CommonLibrary.Interfaces.Services;
 using ModelLibrary.Enums;
@@ -19,9 +19,7 @@ namespace DefaultRealisationLibrary.Services
         {
             ValidateRequest(requestType, path, request);
 
-            var content = CreateHttpContent(request);
-
-            var response = await SendRequestAsync(requestType, path, content, cancellationToken);
+            var response = await SendRequestAsync(requestType, path, request, cancellationToken);
 
             response.EnsureSuccessStatusCode();
         }
@@ -30,9 +28,7 @@ namespace DefaultRealisationLibrary.Services
         {
             ValidateRequest(requestType, path, request);
 
-            var content = CreateHttpContent(request);
-
-            var response = await SendRequestAsync(requestType, path, content, cancellationToken);
+            var response = await SendRequestAsync(requestType, path, request, cancellationToken);
 
             response.EnsureSuccessStatusCode();
 
@@ -47,20 +43,6 @@ namespace DefaultRealisationLibrary.Services
             }
         }
 
-        private static StringContent? CreateHttpContent<T>(T? request)
-        {
-            if (request == null)
-            {
-                return null;
-            }
-
-            var str = JsonSerializer.Serialize(request);
-
-            var httpContent = new StringContent(str, Encoding.UTF8, "application/json");
-
-            return httpContent;
-        }
-
         private static async Task<T> ParseHttpResponseAsync<T>(HttpResponseMessage response, CancellationToken cancellationToken)
         {
             var responseString = await response.Content.ReadAsStringAsync(cancellationToken) ?? throw new Exception($"Запрос вернул пустой ответ.");
@@ -68,26 +50,30 @@ namespace DefaultRealisationLibrary.Services
             return JsonSerializer.Deserialize<T>(responseString) ?? throw new Exception("Ошибка десериализации ответа");
         }
 
-        private Task<HttpResponseMessage> SendRequestAsync(RequestType requestType, string path, HttpContent? content, CancellationToken cancellationToken)
+        private Task<HttpResponseMessage> SendRequestAsync<T>(RequestType requestType, string path, T? value, CancellationToken cancellationToken)
         {
-            var method = requestType switch
+            if (value == null)
             {
-                RequestType.Get => HttpMethod.Get,
-                RequestType.Post => HttpMethod.Post,
-                RequestType.Put => HttpMethod.Put,
-                RequestType.Delete => HttpMethod.Delete,
-                _ => throw new Exception("Не поддерживается")
-            };
-
-            var request = new HttpRequestMessage(method, path);
-
-            if (content != null)
-            {
-                request.Content = content;
-                request.Headers.Add("Content-Type", "application/json");
+                return requestType switch
+                {
+                    RequestType.Get => Client.GetAsync(path, cancellationToken),
+                    RequestType.Post => Client.PostAsync(path,null, cancellationToken),
+                    RequestType.Put => Client.PutAsync(path, null, cancellationToken),
+                    RequestType.Delete => Client.DeleteAsync(path, cancellationToken),
+                    _ => throw new Exception(""),
+                };
             }
-
-            return Client.SendAsync(request, cancellationToken);
+            else
+            {
+                return requestType switch
+                {
+                    RequestType.Get => Client.GetAsync(path, cancellationToken),
+                    RequestType.Post => Client.PostAsJsonAsync(path, value, cancellationToken),
+                    RequestType.Put => Client.PostAsJsonAsync(path, value, cancellationToken),
+                    RequestType.Delete => Client.DeleteAsync(path, cancellationToken),
+                    _ => throw new Exception(""),
+                };
+            }
         }
     }
 }
