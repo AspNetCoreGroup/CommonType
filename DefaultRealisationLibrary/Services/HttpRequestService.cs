@@ -69,14 +69,24 @@ namespace DefaultRealisationLibrary.Services
 
         private Task<HttpResponseMessage> SendRequestAsync(RequestType requestType, string path, HttpContent? content, CancellationToken cancellationToken)
         {
-            return requestType switch
+            var method = requestType switch
             {
-                RequestType.Get => Client.GetAsync(path, cancellationToken),
-                RequestType.Post => Client.PostAsync(path, content, cancellationToken),
-                RequestType.Put => Client.PutAsync(path, content, cancellationToken),
-                RequestType.Delete => Client.DeleteAsync(path, cancellationToken),
-                _ => throw new Exception(""),
+                RequestType.Get => HttpMethod.Get,
+                RequestType.Post => HttpMethod.Post,
+                RequestType.Put => HttpMethod.Put,
+                RequestType.Delete => HttpMethod.Delete,
+                _ => throw new Exception("Не поддерживается")
             };
+
+            var request = new HttpRequestMessage(method, path);
+
+            if (content != null)
+            {
+                request.Headers.Add("Content-Type", "application/json");
+                request.Content = content;
+            }
+
+            return Client.SendAsync(request, cancellationToken);
         }
     }
 }
